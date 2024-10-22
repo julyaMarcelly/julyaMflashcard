@@ -1,0 +1,126 @@
+:root {
+    --text-color: #DBE4EF;
+    --card-front-color: #4d94fd;
+    --card-back-color: #1d6aa8;
+}
+
+body {
+    background: url(https://png.pngtree.com/thumb_back/fw800/background/20231226/pngtree-seamless-vector-texture-blue-floral-pattern-with-bright-summer-flowers-on-image_13900666.png);
+    font-family: 'Bai Jamjuree', sans-serif; /* Ensure proper font fallback */
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 4rem;
+    gap: 3rem;
+}
+
+.cartao {
+    margin: 1rem;
+    height: 20rem;
+    flex-grow: 1;
+    flex-basis: calc(33% - 6rem);
+    perspective: 1000px; /* Added perspective for 3D effect */
+}
+
+.cartao__conteudo {
+    background-color: var(--card-front-color);
+    text-align: center;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 300ms ease-in-out;
+    position: relative; /* Added for proper positioning of child elements */
+}
+
+.cartao__conteudo h3 {
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    text-align: left;
+    padding: 0.5rem;
+    position: absolute;
+    margin: 0.6rem;
+    border-radius: 0.6rem;
+    font-size: 1vw;
+    backface-visibility: hidden;
+}
+
+.cartao__conteudo p {
+    margin: 4rem 0 0; /* Adjust margin for better spacing */
+    padding: 2rem;
+    font-size: 1.4vw;
+}
+
+.cartao__conteudo__pergunta {
+    color: var(--text-color);
+    font-weight: 500;
+    margin: 0; /* Reset margin */
+    backface-visibility: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cartao__conteudo__resposta {
+    color: var(--card-back-color);
+    font-weight: 700;
+    margin: 0; /* Reset margin */
+    backface-visibility: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    transform: rotateY(180deg);
+    background-color: rgba(0, 244, 191, 0.2);
+    border: 4px solid var(--card-back-color);
+}
+
+.cartao.active .cartao__conteudo {
+    transform: rotateY(180deg);
+}
+
+.cartao.active .cartao__conteudo__pergunta {
+    display: none; /* Hide question when active */
+}
+
+.cartao.active .cartao__conteudo__resposta {
+    display: block; /* Ensure answer is visible when active */
+}
+
+footer {
+    background-color: black;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+}
+
+footer p {
+    text-align: center;
+    font-size: 0.6rem;
+    margin: 0; /* Reset margin */
+}
+
+@media (max-width: 560px) {
+    body {
+        background: url('img/bg-mobile.webp') no-repeat center center fixed;
+        background-size: cover; /* Ensure proper scaling */
+    }
+
+    .cartao {
+        flex: 1 0 calc(100% - 2rem); /* Adjust for better spacing on mobile */
+    }
+
+    .cartao__conteudo h3 {
+        font-size: 3vw;
+    }
+
+    .cartao__conteudo p {
+        font-size: 3.8vw;
+    }
+}
